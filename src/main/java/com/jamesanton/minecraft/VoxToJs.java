@@ -1,5 +1,6 @@
 package com.jamesanton.minecraft;
 
+import com.jamesanton.minecraft.reader.VOXReader;
 import com.jamesanton.minecraft.ui.HomeFrame;
 import com.jamesanton.minecraft.utils.Commander;
 

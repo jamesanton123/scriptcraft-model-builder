@@ -1,11 +1,11 @@
-package com.jamesanton.minecraft;
+package com.jamesanton.minecraft.reader;
 
 import java.awt.Color;
-
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
+import com.jamesanton.minecraft.ColorMapping;
 import com.jamesanton.minecraft.storage.Cell;
 import com.jamesanton.minecraft.storage.Column;
 import com.jamesanton.minecraft.ui.ProgressBar;
