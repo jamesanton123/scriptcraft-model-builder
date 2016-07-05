@@ -14,6 +14,6 @@ One way to import a 3d model into your minecraft world if it is running scriptcr
   
 3.) Run this program on the vox file
 
-    a.) Use this program to convert the vox file to javascript file which can be read by scriptcraft drone
+    a.) Use this java program to convert the vox file to javascript file which scriptcraft can understand. Uses a drone to build a 3d model block by block.
 
 
