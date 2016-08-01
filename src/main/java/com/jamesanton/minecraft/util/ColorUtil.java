@@ -1,4 +1,4 @@
-package com.jamesanton.minecraft;
+package com.jamesanton.minecraft.util;
 
 import java.awt.Color;
 import java.awt.image.BufferedImage;
@@ -11,16 +11,16 @@ import javax.imageio.ImageIO;
 
 import org.apache.commons.configuration.ConfigurationUtils;
 
-public class ColorMapping {
-	public File[] textureFiles = null;
-	public Color[] averageColorsOfTextures = null;
+public class ColorUtil {
+	private static File[] textureFiles = null;
+	private static Color[] averageColorsOfTextures = null;
 	
-	public ColorMapping(){
+	static {
 		textureFiles = getTextures();
-		getAverageColorsOfTextures();
-	}	
+		averageColorsOfTextures = getAverageColorsOfTextures();
+	}
 	
-	public String getClosestBlock(Color in){
+	public static String getClosestBlock(Color in){
 		int colorIndex = -1;
 		double closestDistanceSoFar = 1000;
 		for(int i = 0; i < averageColorsOfTextures.length; i++){
@@ -30,12 +30,11 @@ public class ColorMapping {
 				colorIndex = i;
 			}
 		}		
-		String fileName = textureFiles[colorIndex].getName().replace(".png", "");	
-		return fileName;		
+		return textureFiles[colorIndex].getName().replace(".png", "");		
 	}
 	
 	
-	public void getAverageColorsOfTextures(){		
+	private static Color[] getAverageColorsOfTextures(){		
 		List<Color> colors = new ArrayList<Color>(0);
 		// For each image
 		for (File f : textureFiles) {
@@ -66,10 +65,10 @@ public class ColorMapping {
 		    int blue = (blueColors/pixelCount);
 			colors.add(new Color(red,green,blue));			    
 		}		
-		averageColorsOfTextures = colors.toArray(new Color[colors.size()]);
+		return colors.toArray(new Color[colors.size()]);
 	}
 	
-	public File[] getTextures(){
+	public static File[] getTextures(){
 		List<File> files = new ArrayList<File>(0);
 		
 		File cobblestone = new File(ConfigurationUtils.locate("cobblestone.png").getPath());
@@ -88,7 +87,7 @@ public class ColorMapping {
 		return files.toArray(new File[files.size()]);		
 	}
 	
-	public static double getColorDistance(Color c1, Color c2) {
+	private static double getColorDistance(Color c1, Color c2) {
 		double rmean = (c1.getRed() + c2.getRed()) / 2;
 		int r = c1.getRed() - c2.getRed();
 		int g = c1.getGreen() - c2.getGreen();

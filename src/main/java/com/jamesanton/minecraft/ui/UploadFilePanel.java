@@ -12,9 +12,9 @@ import javax.swing.filechooser.FileFilter;
 
 import com.jamesanton.minecraft.VoxToJs;
 
-public class UploadFilePanel extends JPanel{	
+class UploadFilePanel extends JPanel{	
 	private static final long serialVersionUID = 1L;
-	public JProgressBar progressBar = null;
+	private JProgressBar progressBar = null;
 	
 	public UploadFilePanel(){
 		JButton openBtn = new Button("Open", 120,30, HomeFrame.LIGHT_TAN, HomeFrame.SOME_OTHER_COLOR);		

@@ -8,9 +8,9 @@ import javax.swing.JPanel;
 
 public class HomeFrame extends JFrame {
 	private static final long serialVersionUID = 1L;
-	public static final Color LIGHT_TAN = new Color(185,187,163);
-	public static final Color SOME_OTHER_COLOR = new Color(89,102,78);
-	public JPanel mainPanel = null;
+	static final Color LIGHT_TAN = new Color(185,187,163);
+	static final Color SOME_OTHER_COLOR = new Color(89,102,78);
+	private JPanel mainPanel = null;
 	
 	public HomeFrame() {
 		// Create and set up the window.

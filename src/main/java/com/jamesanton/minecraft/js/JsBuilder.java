@@ -1,20 +1,22 @@
-package com.jamesanton.minecraft.utils;
+package com.jamesanton.minecraft.js;
 
 import java.io.File;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.apache.commons.io.FileUtils;
+
 import com.jamesanton.minecraft.ui.ProgressBar;
-import com.jamesanton.minecraft.utils.FileUtils;
 
 /**
  * This class is to add commands to the command queue. It also builds the lines
  * that will be written to the javascript file
  */
-public class Commander {
+public class JsBuilder {
 	private List<String> commands = null;
 
-	public Commander() {
+	public JsBuilder() {
 		commands = new ArrayList<String>(0);
 	}
 
@@ -33,16 +35,7 @@ public class Commander {
 		}
 	}
 
-	public void back(int i) {
-		String lastCommand = commands.get(commands.size() - 1);
-		if (lastCommand.contains("back")) {
-			int oldI = Integer.parseInt(lastCommand.replaceAll("[\\D]", ""));
-			i = oldI + i;
-			commands.set(commands.size() - 1, "back(" + i + ")");
-		} else {
-			commands.add("back(" + i + ")");
-		}
-	}
+	
 
 	public void left(int i) {
 		String lastCommand = commands.get(commands.size() - 1);
@@ -121,7 +114,11 @@ public class Commander {
 		}
 		lines.add("}");
 		System.out.println("Writing file");
-		FileUtils.writeListToFile(inFileLocation, lines);
+		try {
+			FileUtils.writeLines(new File(inFileLocation), lines);
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
 		System.out.println("Complete");
 
 	}

@@ -1,7 +1,15 @@
 package com.jamesanton.minecraft.storage;
 
 public class Cell {
-	public int value = 0;
+	private int value = 0;
+	
+	public void setValue(int value){
+		this.value = value;
+	}
+	
+	public int getValue(){
+		return value;
+	}
 	
 	public boolean isBlock(){
 		if(value != -1){
